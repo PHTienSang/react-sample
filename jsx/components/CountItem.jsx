@@ -52,16 +52,14 @@ CountItem.defaultProps = {
   count: 0,
 };
 
-function mapStateToProps(state) {
-  return {
-    count: state.counteitem.count,
-  };
-}
+const mapStateToProps = (state) => ({ count: state.counteitem.count });
 
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators({
+
+const mapDispatchToProps = (dispatch) => bindActionCreators(
+  {
     handleCountItem: countItem,
-  }, dispatch);
-}
+  },
+  dispatch,
+);
 
 export default connect(mapStateToProps, mapDispatchToProps)(CountItem);
