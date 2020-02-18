@@ -1,5 +1,9 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { countItem } from '../action/ListAction';
 
 const Button = styled.button`
     position: relative;
@@ -25,30 +29,39 @@ const Button = styled.button`
     border-radius: 40px;
 `;
 
-export default class CountItem extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      count: 0,
-    };
-    this.handleClick = this.handleClick.bind(this);
-  }
-
-  handleClick() {
-    const { count } = this.state;
-    this.setState({ count: count + 1 });
-  }
-
+class CountItem extends PureComponent {
   render() {
-    const { count } = this.state;
+    const { count } = this.props;
     return (
       <div>
         <h1>
           Count:
           {count}
         </h1>
-        <Button onClick={this.handleClick}>Count Up</Button>
+        <Button onClick={count.handleCountItem}>Count Up</Button>
       </div>
     );
   }
 }
+
+CountItem.propTypes = {
+  count: PropTypes.number,
+};
+
+CountItem.defaultProps = {
+  count: 0,
+};
+
+function mapStateToProps(state) {
+  return {
+    count: state.counteitem.count,
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({
+    handleCountItem: countItem,
+  }, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(CountItem);
