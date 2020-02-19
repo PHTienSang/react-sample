@@ -31,28 +31,27 @@ const Button = styled.button`
 
 class CountItem extends PureComponent {
   render() {
-    const { count } = this.props;
+    const { count, handleCountItem } = this.props;
     return (
       <div>
         <h1>
           Count:
           {count}
         </h1>
-        <Button onClick={count.handleCountItem}>Count Up</Button>
+        <Button onClick={handleCountItem}>Count Up</Button>
       </div>
     );
   }
 }
 
 CountItem.propTypes = {
-  count: PropTypes.number,
+  count: PropTypes.number.isRequired,
+  handleCountItem: PropTypes.func.isRequired,
 };
 
-CountItem.defaultProps = {
-  count: 0,
-};
-
-const mapStateToProps = (state) => ({ count: state.counteitem.count });
+const mapStateToProps = (state) => ({
+  count: state.count,
+});
 
 
 const mapDispatchToProps = (dispatch) => bindActionCreators(

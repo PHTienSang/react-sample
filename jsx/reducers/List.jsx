@@ -4,20 +4,13 @@ const INITIAL_STATE = {
   count: 0,
 };
 
-const handleChange = (state, change) => {
-  const { count } = state;
-  return ({
-    count: count + change,
-  });
-};
-
-function test(state = INITIAL_STATE, action = {}) {
-  // const { count } = state;
+function reducer(state = INITIAL_STATE, action) {
+  console.log(action);
   switch (action.type) {
     case COUNTER:
-      return handleChange(state, 1);
+      return state.count + 1;
     default:
       return state;
   }
 }
-export default test;
+export default reducer;

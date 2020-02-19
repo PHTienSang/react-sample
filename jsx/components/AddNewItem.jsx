@@ -1,18 +1,12 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import ItemList from './ItemList';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { countItem } from '../action/ListAction';
+import PropTypes from "prop-types";
+import { addItem } from '../action/ListAction';
 
 export default class AddNewItem extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      items: [],
-      temp: '',
-    };
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.removeItem = this.removeItem.bind(this);
-    this.handleChange = this.handleChange.bind(this);
-  }
-
   handleChange(e) {
     this.setState({ temp: e.target.value });
   }
@@ -50,3 +44,17 @@ export default class AddNewItem extends Component {
     );
   }
 }
+
+const mapStateToProps = (state) => ({
+  items: state.items,
+});
+
+
+const mapDispatchToProps = (dispatch) => bindActionCreators(
+  {
+    handleSubmit: addItem,
+  },
+  dispatch,
+);
+
+export default connect(mapStateToProps, mapDispatchToProps)(AddNewItem);
