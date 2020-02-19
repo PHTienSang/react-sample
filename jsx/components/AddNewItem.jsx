@@ -1,60 +1,67 @@
-import React, { useState } from 'react';
-import ItemList from './ItemList';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { countItem } from '../action/ListAction';
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 import { addItem } from '../action/ListAction';
+import ItemList from './ItemList';
 
-export default class AddNewItem extends Component {
+
+class AddNewItem extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      temp: '',
+    };
+    this.handleChange = this.handleChange.bind(this);
+  }
+
   handleChange(e) {
     this.setState({ temp: e.target.value });
   }
 
-  handleSubmit() {
-    const { items, temp } = this.state;
-    this.setState(
-      {
-        items: items.concat(temp),
-        temp: '',
-      },
-    );
-  }
-
-  removeItem(index) {
-    const { items } = this.state;
-    items.splice(index, 1);
-    const tmp = [...items];
-    this.setState(
-      {
-        items: tmp,
-        temp: '',
-      },
-    );
-  }
+  // removeItem(index) {
+  //   const { items } = this.state;
+  //   items.splice(index, 1);
+  //   const tmp = [...items];
+  //   this.setState(
+  //     {
+  //       items: tmp,
+  //       temp: '',
+  //     },
+  //   );
+  // }
 
   render() {
-    const { items, temp } = this.state;
+    const { items } = this.props;
     return (
       <div>
-        <input type="text" value={temp} onChange={this.handleChange} />
-        <button type="button" onClick={this.handleSubmit}>Add</button>
-        <ItemList itemLists={items} removeItem={this.removeItem} />
+        <input type="text" onChange={this.handleChange} />
+        <button
+          type="button"
+          onClick={() => this.props.dispatch(addItem(this.state.temp))}
+        >
+          Add
+        </button>
+        <ItemList itemLists={items} />
       </div>
     );
   }
 }
+
+AddNewItem.propsType = {
+  items: PropTypes.arrayOf.isRequired,
+};
 
 const mapStateToProps = (state) => ({
   items: state.items,
 });
 
 
-const mapDispatchToProps = (dispatch) => bindActionCreators(
-  {
-    handleSubmit: addItem,
-  },
-  dispatch,
-);
+// const mapDispatchToProps = (dispatch) => bindActionCreators(
+//   {
+//     handleSubmit: addItem(this.state.temp),
+//   },
+//   dispatch,
+// );
 
-export default connect(mapStateToProps, mapDispatchToProps)(AddNewItem);
+export default connect(mapStateToProps, null)(AddNewItem);

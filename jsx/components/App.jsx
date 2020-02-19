@@ -1,11 +1,11 @@
 import React from 'react';
 import CountItem from './CountItem';
-// import AddNewItem from './AddNewItem';
+import AddNewItem from './AddNewItem';
 
 const App = () => (
   <div>
     <CountItem />
-    {/* <AddNewItem /> */}
+    <AddNewItem />
   </div>
 );
 export default App;

@@ -15,9 +15,13 @@ function reducer(state = initialState, action) {
     case 'COUNTER':
       return {
         count: state.count + 1,
+        items: state.items,
       };
     case 'ADD_ITEM':
-      return state;
+      return {
+        count: state.count,
+        items: state.items.concat(action.value),
+      };
     default:
       return state;
   }
