@@ -23,5 +23,4 @@ export default class ItemList extends PureComponent {
 
 ItemList.propTypes = {
   itemLists: PropTypes.arrayOf.isRequired,
-  // removeItem: PropTypes.func.isRequired,
 };

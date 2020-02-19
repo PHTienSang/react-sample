@@ -16,21 +16,6 @@ class AddNewItem extends Component {
     this.setState({ temp: e.target.value });
   }
 
-  // removeItem(index) {
-  //   const { items } = this.state;
-  //   items.splice(index, 1);
-  //   const tmp = [...items];
-  //   this.setState(
-  //     {
-  //       items: tmp,
-  //       temp: '',
-  //     },
-  //   );
-  // }
-  // handleRemoveItem(index) {
-  //   this.props.dispatch(deleteItem(index));
-  // }
-
   handleAddItem() {
     const { temp } = this.state;
     this.props.dispatch(addItem(temp));

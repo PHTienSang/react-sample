@@ -4,7 +4,6 @@ import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import logger from 'redux-logger';
 import App from './components/App';
-// import reducer from './reducers';
 
 const initialState = {
   count: 0,
