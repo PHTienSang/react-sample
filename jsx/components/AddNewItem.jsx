@@ -1,17 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
-import { addItem } from '../action/ListAction';
+import { addItem, deleteItem } from '../action/ListAction';
 import ItemList from './ItemList';
 
 
 class AddNewItem extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      temp: '',
-    };
+    this.handleAddItem = this.handleAddItem.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
 
@@ -30,6 +27,14 @@ class AddNewItem extends Component {
   //     },
   //   );
   // }
+  // handleRemoveItem(index) {
+  //   this.props.dispatch(deleteItem(index));
+  // }
+
+  handleAddItem() {
+    const { temp } = this.state;
+    this.props.dispatch(addItem(temp));
+  }
 
   render() {
     const { items } = this.props;
@@ -38,7 +43,7 @@ class AddNewItem extends Component {
         <input type="text" onChange={this.handleChange} />
         <button
           type="button"
-          onClick={() => this.props.dispatch(addItem(this.state.temp))}
+          onClick={this.handleAddItem}
         >
           Add
         </button>
@@ -48,20 +53,12 @@ class AddNewItem extends Component {
   }
 }
 
-AddNewItem.propsType = {
+AddNewItem.propTypes = {
   items: PropTypes.arrayOf.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   items: state.items,
 });
-
-
-// const mapDispatchToProps = (dispatch) => bindActionCreators(
-//   {
-//     handleSubmit: addItem(this.state.temp),
-//   },
-//   dispatch,
-// );
 
 export default connect(mapStateToProps, null)(AddNewItem);

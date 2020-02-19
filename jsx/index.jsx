@@ -22,6 +22,13 @@ function reducer(state = initialState, action) {
         count: state.count,
         items: state.items.concat(action.value),
       };
+    case 'DELETE_ITEM':
+    {
+      return {
+        count: state.count,
+        items: [...state.items.splice(0, action.id), ...state.items.splice(1)],
+      };
+    }
     default:
       return state;
   }

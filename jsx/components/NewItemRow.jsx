@@ -1,15 +1,17 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { deleteItem } from '../action/ListAction';
 
-export default class NewItemRow extends Component {
+class NewItemRow extends Component {
   constructor(props) {
     super(props);
     this.handleDeleteButton = this.handleDeleteButton.bind(this);
   }
 
   handleDeleteButton() {
-    const { index, removeItem } = this.props;
-    removeItem(index);
+    const { index } = this.props;
+    this.props.dispatch(deleteItem(index));
   }
 
   render() {
@@ -25,6 +27,7 @@ export default class NewItemRow extends Component {
 
 NewItemRow.propTypes = {
   value: PropTypes.string.isRequired,
-  removeItem: PropTypes.func.isRequired,
   index: PropTypes.number.isRequired,
 };
+
+export default connect(null, null)(NewItemRow);

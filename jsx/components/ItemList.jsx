@@ -4,7 +4,7 @@ import NewItemRow from './NewItemRow';
 
 export default class ItemList extends PureComponent {
   render() {
-    const { itemLists, removeItem } = this.props;
+    const { itemLists } = this.props;
     return (
       <ul>
         {
@@ -13,7 +13,6 @@ export default class ItemList extends PureComponent {
               index={idx}
               key={idx}
               value={item}
-              removeItem={removeItem}
             />
           ))
         }
@@ -24,5 +23,5 @@ export default class ItemList extends PureComponent {
 
 ItemList.propTypes = {
   itemLists: PropTypes.arrayOf.isRequired,
-  removeItem: PropTypes.func.isRequired,
+  // removeItem: PropTypes.func.isRequired,
 };
