@@ -1,12 +1,12 @@
 import React from 'react';
-import { createStore, applyMiddleware } from 'redux';
+// import { createStore, applyMiddleware } from 'redux';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
-import logger from 'redux-logger';
 import App from './components/App';
-import reducer from './reducers';
+import configureStore from './store/configureStore';
 
-const store = createStore(reducer(), applyMiddleware(logger));
+
+const store = configureStore();
 
 render(
   (
