@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import NewItemRow from './NewItemRow';
+import NewItemRowContainer from '../containers/NewItemRowContainer';
 
 export default class ItemList extends PureComponent {
   render() {
@@ -9,7 +9,7 @@ export default class ItemList extends PureComponent {
       <ul>
         {
           itemLists.map((item, idx) => (
-            <NewItemRow
+            <NewItemRowContainer
               index={idx}
               key={idx}
               value={item}

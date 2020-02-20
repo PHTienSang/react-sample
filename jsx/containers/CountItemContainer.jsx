@@ -14,5 +14,5 @@ const mapDispatchToProps = (dispatch) => bindActionCreators(
   dispatch,
 );
 
-const CountItemContainers = connect(mapStateToProps, mapDispatchToProps)(CountItem);
-export default CountItemContainers;
+const CountItemContainer = connect(mapStateToProps, mapDispatchToProps)(CountItem);
+export default CountItemContainer;

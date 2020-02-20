@@ -1,49 +1,32 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { addItem, deleteItem } from '../action/ListAction';
 import ItemList from './ItemList';
 
 
-class AddNewItem extends Component {
-  constructor(props) {
-    super(props);
-    this.handleAddItem = this.handleAddItem.bind(this);
-    this.handleChange = this.handleChange.bind(this);
-  }
-
-  handleChange(e) {
-    this.setState({ temp: e.target.value });
-  }
-
-  handleAddItem() {
-    const { temp } = this.state;
-    this.props.dispatch(addItem(temp));
-  }
-
-  render() {
-    const { items } = this.props;
-    return (
-      <div>
-        <input type="text" onChange={this.handleChange} />
-        <button
-          type="button"
-          onClick={this.handleAddItem}
-        >
-          Add
-        </button>
-        <ItemList itemLists={items} />
-      </div>
-    );
-  }
-}
-
-AddNewItem.propTypes = {
-  items: PropTypes.arrayOf.isRequired,
+const AddNewItem = ({ items, addItem }) => {
+  const [value, setText] = useState('');
+  return (
+    <div>
+      <input type="text" value={value} onChange={(e) => setText(e.target.value)} />
+      <button
+        type="button"
+        onClick={() => addItem({ value })}
+      >
+        Add
+      </button>
+      <ItemList itemLists={items} />
+    </div>
+  );
 };
 
-const mapStateToProps = (state) => ({
-  items: state.items,
-});
+AddNewItem.propTypes = {
+  items: PropTypes.arrayOf(PropTypes.string),
+  addItem: PropTypes.func,
+};
 
-export default connect(mapStateToProps, null)(AddNewItem);
+AddNewItem.defaultProps = {
+  items: [],
+  addItem: () => {},
+};
+
+export default AddNewItem;

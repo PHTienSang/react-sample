@@ -1,11 +1,11 @@
 import React from 'react';
-import CountItemContainers from '../containers/CountItemContainers';
-// import AddNewItemContainers from '../containers/AddNewItemContainers';
+import CountItemContainer from '../containers/CountItemContainer';
+import AddNewItemContainer from '../containers/AddNewItemContainer';
 
 const App = () => (
   <div>
-    <CountItemContainers />
-    {/* <AddNewItemContainers /> */}
+    <CountItemContainer />
+    <AddNewItemContainer />
   </div>
 );
 export default App;
