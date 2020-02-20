@@ -1,21 +1,5 @@
-export const COUNTER = 'COUNTER';
-export const ADD_ITEM = 'ADD_ITEM';
-export const DELETE_ITEM = 'DELETE_ITEM';
+import { createAction } from 'redux-actions';
 
-export function countItem() {
-  return ({ type: COUNTER });
-}
-
-export function addItem(text) {
-  return {
-    type: ADD_ITEM,
-    value: text,
-  };
-}
-
-export function deleteItem(index) {
-  return {
-    type: DELETE_ITEM,
-    id: index,
-  };
-}
+export const countItem = createAction('COUNTER');
+export const addItem = createAction('ADD_ITEM');
+export const deleteItem = createAction('DELETE_ITEM');
