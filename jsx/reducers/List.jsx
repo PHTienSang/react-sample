@@ -23,13 +23,12 @@ const reducer = handleActions(
         items: state.items.concat(value),
       }),
     [deleteItem]: (state, { payload: { index } }) => {
-      const { items } = state.items;
-      alert(items);
-      // items.splice(index, 1);
-      // const tmp = [...items];
+      const temp = state.items;
+      temp.splice(index, 1);
+      const newArr = [...temp];
       return {
         ...state,
-        items,
+        items: newArr,
       };
     },
   },
